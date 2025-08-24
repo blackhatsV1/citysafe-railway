@@ -10,7 +10,7 @@ const db = require('./db');
 const path = require("path");
 require("dotenv").config();
 
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.MYSQLPORT || 9000;
 
 
 app.use(session({
