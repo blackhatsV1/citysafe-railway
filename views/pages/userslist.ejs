@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/admin-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/admin-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                  <div class="row g-4">
+                    <div class="col-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                          <h6 class="mb-4">User List</h6>
+                          <div class="table-responsive">
+                              <table class="table table-hover">
+                                  <thead>
+                                      <tr>
+                                          <th scope="col">Actions</th>
+                                          <th scope="col">ID</th>
+                                          <th scope="col">Firstname</th>
+                                          <th scope="col">Lastname</th>
+                                          <th scope="col">Address</th>
+                                          <th scope="col">Barangay</th>
+                                          <th scope="col">City</th>
+                                          <th scope="col">Province</th>
+                                          <th scope="col">Postal Code</th>
+                                          <th scope="col">Country</th>
+                                          <th scope="col">Email</th>
+                                          <th scope="col">Contact Number</th>
+                                          <th scope="col">Landmark</th>
+                                          <th scope="col">Address Type</th>
+                                          <th scope="col">Notes</th>
+                                          <th scope="col">Password</th>
+                                          <th scope="col">Role</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% users.forEach(user => { %>
+                                      <tr>
+                                        <td>
+                                          <a href="/edit/<%= user.id %>">
+                                              <button type="button" class="btn btn-outline-info m-2" id="submit">Edit</button>
+                                          </a>
+                                          <form action="/delete/<%= user.id %>" method="POST" style="display:inline;">
+                                            <button type="submit" class="btn btn-outline-danger m-2" onclick="return confirm('Delete this User?')" id="delete">Delete</button>
+                                          </form>
+                                        
+                                        </td>
+                                        <td><%= user.id %></td>
+                                        <td><%= user.firstname %></td>
+                                        <td><%= user.lastname %></td>
+                                        <td><%= user.street_address %></td>
+                                        <td><%= user.barangay %></td>
+                                        <td><%= user.city %></td>
+                                        <td><%= user.province %></td>
+                                        <td><%= user.postal_code %></td>
+                                        <td><%= user.country %></td>
+                                        <td><%= user.email %></td>
+                                        <td><%= user.contact_number %></td>
+                                        <td><%= user.landmark %></td>
+                                        <td><%= user.address_type %></td>
+                                        <td><%= user.additional_instructions %></td>
+                                        <td><%= user.password %></td>
+                                        <td><%= user.role %></td>
+                                      </tr>
+                                    <% }) %>
+                                  </tbody>
+                              </table>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+            </div>
+            <!-- Widgets End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+
+
+

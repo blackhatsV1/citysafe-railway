@@ -1,0 +1,120 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/visitor-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/visitor-navbar'); %>
+          <!-- Navbar End -->
+
+
+          <!-- Typography Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded mb-3 p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h1><i class="bi bi-cloud-sun mb-0"></i>Welcome to CitySafe!</h1>
+                    </div>
+                </div>
+                <div class="row g-4">                    
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Services</h6>
+                            <dl class="row mb-0">
+                                <dt class="col-sm-4">Real-time Information Service</dt>
+                                <dd class="col-sm-8">Provides disaster-related updates (weather warnings, typhoon paths, daily rain tracking, temperature tracking).</dd>
+
+                                <dt class="col-sm-4">Localized Notification Service</dt>
+                                <dd class="col-sm-8">Sends alerts specific to a user’s location (ex: “Flood warning in Jaro District, Iloilo City”).</dd>
+
+                                <dt class="col-sm-4">Emergency Alert Service</dt>
+                                <dd class="col-sm-8">Sends real-time emergency alerts during disasters. Allows users to mark themselves safe or request urgent help.</dd>
+
+                                <dt class="col-sm-4 text-truncate">Donation and Relief Management Service</dt>
+                                <dd class="col-sm-8">Lets donors contribute goods (food, clothing, medicine, etc.). Provides tracking for donations and ensures proper allocation. Helps officials manage and distribute resources effectively.</dd>
+                                
+                                <dt class="col-sm-4">Relief Effort Coordination Service</dt>
+                                <dd class="col-sm-8">Assists officials and responders in organizing volunteers. Tracks relief distribution (who received what and where).</dd>
+                                
+                                <dt class="col-sm-4">Mapping and Location Service</dt>
+                                <dd class="col-sm-8">Shows locations of fire stations, and police stations. Helps users navigate safe routes using maps.</dd>
+                            </dl>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Members</h6>
+                            <div class="border rounded p-4 pb-0 mb-4">
+                                <figure>
+                                    <blockquote class="blockquote">
+                                        <p>Jayrold Tabalina</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="border rounded p-4 pb-0 mb-4">
+                                <figure class="text-center">
+                                    <blockquote class="blockquote">
+                                        <p>Yasmine M. Talaman</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="border rounded p-4 pb-0 mb-0">
+                                <figure class="text-end">
+                                    <blockquote class="blockquote">
+                                        <p>Mark Vincent Jabao</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>  
+
+                </div>
+            </div>
+            <!-- Typography End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+

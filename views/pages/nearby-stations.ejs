@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%- include('../partials/head'); %>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <link rel="stylesheet"
+            href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+        <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.min.js"></script>
+        <style>
+            #map {
+                height: 400px;
+                border: 1px solid black;
+            }
+
+            .btn-close {
+                filter: invert(25%) sepia(90%) saturate(6000%) hue-rotate(0deg);
+            }
+        </style>
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <%- include('../partials/spinner'); %>
+            <!-- Spinner End -->
+
+
+            <!-- Sidebar Start -->
+            <%- include('../partials/user-sidebar'); %>
+                <!-- Sidebar End -->
+
+
+                <!-- Content Start -->
+                <div class="content">
+                    <!-- Navbar Start -->
+                    <%- include('../partials/user-navbar'); %>
+                        <!-- Navbar End -->
+
+                        <!-- Sales Chart Start -->
+                        <div class="container-fluid pt-4 px-4">
+                            <div class="row g-4">
+                                <!-- Left Column (Bigger) -->
+                                <div class="col-sm-12 col-xl-8">
+                                    <div class="bg-secondary text-center rounded p-4 h-100">
+                                        <div class="d-flex align-items-center justify-content-between mb-4">
+                                            <h6 class="mb-0">Nearby Stations</h6>
+                                        </div>
+                                        <div class="container mt-5">
+                                            <div class="bg-secondary p-3">
+                                                <h4 id="address">Loading Address...</h4>
+                                                <p id="coords"></p>
+                                                <div id="map"></div>
+                                                <div class="d-flex justify-content-center">
+                                                    <button class="btn btn-primary mt-3" id="scanButton"
+                                                        data-bs-toggle="modal" data-bs-target="#myModal">Scan
+                                                        Locations</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal fade" id="myModal" tabindex="-1"
+                                                aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog text-light modal-dialog-centered ">
+                                                    <div class="modal-content bg-secondary">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">
+                                                                <h3>Nearest Help Station (PNP/BFP):</h3>
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p class="fs-5"><strong>Station Name:</strong> <span
+                                                                    id="stationName">Loading...</span></p>
+                                                            <p class="fs-5"><strong>Distance:</strong> <span
+                                                                    id="stationDistance">Loading...</span></p>
+                                                            <p class="fs-5"><strong>Address:</strong> <span
+                                                                    id="stationAddress">Loading...</span></p>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-warning"
+                                                                data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <script>
+                                                const redIcon = new L.Icon({
+                                                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-red.png',
+                                                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.4/images/marker-shadow.png',
+                                                    iconSize: [25, 41],
+                                                    iconAnchor: [12, 41],
+                                                    popupAnchor: [1, -34],
+                                                    shadowSize: [41, 41]
+                                                });
+                                                const map = L.map('map');
+
+                                                L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                                    maxZoom: 18,
+                                                    attribution: '© OpenStreetMap'
+                                                }).addTo(map);
+
+                                                map.locate({ setView: true, maxZoom: 16 });
+
+                                                let userLat, userLng;
+
+                                                function onLocationFound(e) {
+                                                    const { lat, lng } = e.latlng;
+                                                    userLat = lat;
+                                                    userLng = lng;
+
+                                                    L.marker([lat, lng]).addTo(map)
+                                                        .bindPopup(`You are here.`).openPopup();
+                                                    L.circle([lat, lng], e.accuracy).addTo(map);
+
+                                                    document.getElementById("coords").textContent = `Lattitude: ${lat}, Longitude: ${lng}`;
+
+                                                    fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+                                                        .then(res => res.json())
+                                                        .then(data => {
+                                                            document.getElementById("address").innerHTML = `<b>${data.display_name}</b>`;
+                                                        });
+                                                }
+
+                                                map.on('locationfound', onLocationFound);
+
+                                                document.getElementById("scanButton").addEventListener('click', () => {
+                                                    if (userLat === undefined || userLng === undefined) return;
+
+                                                    fetch('/nearby-stations', {
+                                                        method: 'POST',
+                                                        headers: { 'Content-Type': 'application/json' },
+                                                        body: JSON.stringify({ lat: userLat, lng: userLng })
+                                                    })
+                                                        .then(res => res.json())
+                                                        .then(data => {
+                                                            if (!data.length) return;
+
+                                                            // Get the nearest station (first in sorted array)
+                                                            const nearest = data[0];
+
+                                                            // Update modal content
+                                                            document.getElementById("stationName").textContent = nearest.name;
+                                                            document.getElementById("stationAddress").textContent = nearest.address;
+                                                            document.getElementById("stationDistance").textContent = `${nearest.distance.toFixed(2)} km`;
+                                                            document.getElementById("stationName1").textContent = nearest.name;
+                                                            document.getElementById("stationAddress1").textContent = nearest.address;
+                                                            document.getElementById("stationDistance1").textContent = `${nearest.distance.toFixed(2)} km`;
+
+                                                            // Add marker for each station
+                                                            data.forEach(station => {
+                                                                L.marker([station.latitude, station.longitude], { icon: redIcon })
+                                                                    .addTo(map)
+                                                                    .bindPopup(`<b>${station.name}</b><br>Type: ${station.type}<br>Distance: ${station.distance.toFixed(2)} km<br>Address: ${station.address}`);
+                                                            });
+
+                                                            // Add route from user to nearest station
+                                                            L.Routing.control({
+                                                                waypoints: [
+                                                                    L.latLng(userLat, userLng),
+                                                                    L.latLng(nearest.latitude, nearest.longitude)
+                                                                ],
+                                                                lineOptions: {
+                                                                    styles: [{ color: 'blue', weight: 5 }]
+                                                                },
+                                                                routeWhileDragging: true,
+                                                                showAlternatives: true,
+                                                                addWaypoints: false,
+                                                                draggableWaypoints: true,
+                                                                fitSelectedRoutes: true
+                                                            }).addTo(map);
+                                                        });
+                                                });
+
+                                            </script>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column (Smaller but same height) -->
+                                <div class="col-sm-12 col-xl-4">
+                                    <div class="bg-secondary justify-content-center rounded p-4 h-100">
+                                        <div class="d-flex justify-content-between mb-4">
+                                            <h6 class="mb-5">Nearest Station</h6>
+                                        </div>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item bg-transparent"><p class="fs-5"><strong>Station Name:</strong> <span id="stationName1">Loading...</span></p></li>
+                                            <li class="list-group-item bg-transparent"><p class="fs-5"><strong>Distance:</strong> <span id="stationDistance1">Loading...</span></p></li>
+                                            <li class="list-group-item bg-transparent"><p class="fs-5"><strong>Address:</strong> <span id="stationAddress1">Loading...</span></p></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sales Chart End -->
+
+
+
+                        <!-- Footer Start -->
+                        <%- include('../partials/footer'); %>
+                            <!-- Footer End -->
+
+                </div>
+                <!-- Content End -->
+
+
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>
+
+<!-- <h1><i class="bi bi-cloud-sun"></i>CitySafe Weather View</h1>
+<hr class="grey-line">
+<h4 class="mb-5">Please <a href="/login">Login</a> to experience full feature!</h4>
+<p id="address"></p>
+<p id="coords"></p>
+<div class="rounded p-3" id="weather-info">Loading weather data...</div>
+<div id="weather-map"></div>
+<p><%- include('../partials/selectloc-visitor'); %></p> -->

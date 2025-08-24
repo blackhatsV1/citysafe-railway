@@ -1,0 +1,45 @@
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-secondary navbar-dark">
+        <a href="/adminpage" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary"><i class="fa fa-shield-alt me-2"></i>CitySafe</h3>
+        </a>
+        <div class="d-flex align-items-center ms-4 mb-4">
+            <div class="position-relative">
+                <img class="rounded-circle" src="/images/user.png" alt="" style="width: 40px; height: 40px;">
+                <div
+                    class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                </div>
+            </div>
+            <div class="ms-3">
+                <h6 class="mb-0"><%= username %></h6>
+                <span>Admin</span>
+            </div>
+        </div>
+        <div class="navbar-nav w-100">
+            <a href="/adminpage" class="nav-item nav-link"><i class="fa fa-home me-2"></i>Dashboard</a>
+            <a href="/disaster-reports" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>SOS Reports</a>
+            <a href="/view-users-posts" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>View Users Post</a>
+            <a href="/reports" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Charts</a>
+            <a href="/assessment-results" class="nav-item nav-link"><i class="fa fa-envelope me-2"></i>Assessments</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
+                        class="far fa-file-alt me-2"></i>Manage Users</a>
+                <div class="dropdown-menu bg-transparent border-0">
+                    <a href="/userslist" class="dropdown-item">Users List</a>
+                    <a href="/addusers" class="dropdown-item">Add Users</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!-- <ul>
+        <li><a href="/adminpage">Home Dashboard</a></li>
+        <li><a href="/disaster-reports">SOS Reports</a></li>
+        <li><a href="/view-users-posts">View Users Posts</a></li>
+        <li><a href="/reports">Reports</a></li>
+        <li><a href="/userslist">Users List</a></li>
+        <li><a href="/assessment-results">View Assessment Results</a></li>
+        <li><a href="/addusers">Add Users</a></li>
+        <li><a href="/aboutadmin">About</a></li>
+    </ul> -->

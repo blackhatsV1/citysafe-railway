@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="container bg-secondary rounded p-3 mb-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="text-white mb-0 mt-3">Assessment History</h3>
+                        <!-- <button type="button" class="btn btn-primary mt-3 me-1 w-auto" onclick="window.location.href='/assess-risk'">New Assessment</button> -->
+                         <a href="/assess-risk">Take new Assessment</a>
+                    </div>
+                  
+                  
+                  <hr class="grey-line">
+                  <% if (assessments.length > 0) { %>
+                    <div class="mb-0 ms-5 text-white">
+                        <h4>Your assessment results</h4>
+                    </div>
+
+                    <div class="container text-dark w-75 rounded p-3 ">
+                        <% for (let i = 0; i < assessments.length; i++) { %>
+                            <div class="mb-3">
+                                <div class="bg-light rounded p-3" style="border: 1px solid black;">
+                                    <p><%= assessments[i].assessed_at %></p>
+                                    <p><strong>Risk Score:</strong> <%= assessments[i].risk_score %></p>
+                                    <p><strong>Risk Level:</strong> <%= assessments[i].risk_level %></p>
+                                </div>
+                                <span class="d-flex">
+                                    <form action="/delete-result/<%= assessments[i].id %>" method="POST" class="ms-auto">
+                                        <button type="submit" onclick="return confirm('Delete this Assessment?')" class="btn btn-danger mt-2 w-auto">Delete</button>
+                                    </form>
+                                </span>
+                                
+                                
+                                <hr class="grey-line">
+                            </div>
+
+                        <% } %>
+                    </div>
+
+                <% } else { %>
+                    <div class="my-container w-60 mt-5">
+                    <p>No risk assessment results found.</p>
+                    </div>
+                <% } %>
+
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+

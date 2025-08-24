@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nearby PNP/BFP</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <style>
+    #map { height: 400px; border: 1px solid black; }
+  </style>
+</head>
+<body>
+  <h2 id="address">Address:</h2>
+  <p id="coords"></p>
+  <div id="map"></div>
+
+  <script>
+    const map = L.map('map').fitWorld();
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    map.locate({ setView: true, maxZoom: 16 });
+
+    function onLocationFound(e) {
+      const { lat, lng } = e.latlng;
+      const radius = e.accuracy;
+
+      L.marker([lat, lng]).addTo(map)
+        .bindPopup(`You are within ${radius.toFixed(0)} meters.`).openPopup();
+      L.circle([lat, lng], radius).addTo(map);
+
+      document.getElementById("coords").textContent = `Lat: ${lat}, Lng: ${lng}`;
+
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("address").innerHTML = `<b>${data.display_name}</b>`;
+        });
+
+
+      fetch(`/nearby-stations?lat=${lat}&lng=${lng}`)
+        .then(res => res.json())
+        .then(data => {
+          data.forEach(station => {
+            L.marker([station.latitude, station.longitude]).addTo(map)
+              .bindPopup(`<b>${station.name}</b><br>Type: ${station.type}<br>Distance: ${station.distance.toFixed(2)} km`);
+          });
+        });
+    }
+
+    map.on('locationfound', onLocationFound);
+    map.on('locationerror', e => alert(e.message));
+  </script>
+</body>
+</html>

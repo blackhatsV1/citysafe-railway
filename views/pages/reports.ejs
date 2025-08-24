@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/admin-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/admin-navbar'); %>
+          <!-- Navbar End -->
+
+
+          <!-- Blank Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row bg-secondary rounded align-items-center justify-content-center mx-0">
+                    
+                    <div class="container mt-5">
+                      <h2 class="mb-4 bg-light p-3 sticky-header">All Data Records</h2>
+                      <div class="row">
+                        <div class="col-12 mb-4">
+                          <h4 class="bg-danger p-2 rounded-sm text-white">High Risk Users</h4>
+                          <table class="table table-danger table-bordered">
+                            <thead>
+                              <tr><th>Fullname</th><th>Risk Score</th><th>Assessed At</th></tr>
+                            </thead>
+                            <tbody>
+                              <% riskTables['High'].forEach(user => { %>
+                                <tr>
+                                  <td><%= user.username %></td>
+                                  <td><%= user.risk_score %></td>
+                                  <td><%= user.assessed_at.toLocaleString() %></td>
+                                </tr>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      
+                        <div class="col-12 mb-4">
+                          <h4 class="bg-warning p-2 rounded-sm text-dark">Moderate Risk Users</h4>
+                          <table class="table table-warning table-bordered">
+                            <thead>
+                              <tr><th>Fullname</th><th>Risk Score</th><th>Assessed At</th></tr>
+                            </thead>
+                            <tbody>
+                              <% riskTables['Moderate'].forEach(user => { %>
+                                <tr>
+                                  <td><%= user.username %></td>
+                                  <td><%= user.risk_score %></td>
+                                  <td><%= user.assessed_at.toLocaleString() %></td>
+                                </tr>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      
+                        <div class="col-12 mb-4">
+                          <h4 class="bg-success p-2 rounded-sm text-white">Low Risk Users</h4>
+                          <table class="table table-success table-bordered">
+                            <thead>
+                              <tr><th>Fullname</th><th>Risk Score</th><th>Assessed At</th></tr>
+                            </thead>
+                            <tbody>
+                              <% riskTables['Low'].forEach(user => { %>
+                                <tr>
+                                  <td><%= user.username %></td>
+                                  <td><%= user.risk_score %></td>
+                                  <td><%= user.assessed_at.toLocaleString() %></td>
+                                </tr>
+                              <% }) %>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+
+                      <hr class="grey-line">
+                      <div class="container bg-white">
+                        <h4 class="pt-3">Checklist Completion</h4>
+                        <div id="checklistChart" style="width: 100%; height: 400px;"></div>
+                      </div>
+                      <hr class="grey-line">
+
+                      <div class="container bg-white">
+                        <h4 class="pt-3">Number of posts per day</h4>
+                        <div id="userChart" style="width: 100%; height: 400px;"></div>
+                      </div>
+                      <hr class="grey-line">
+
+                      <div class="container bg-white">
+                        <h4 class="pt-3">Risk Level Data</h4>
+                        <div id="riskLevelChart" style="width: 100%; height: 400px;"></div>
+                      </div>
+                      <hr class="grey-line">
+
+                      <div class="container bg-white">
+                        <h4 class="pt-3">Risk Score Trend</h4>
+                        <div id="trendChart" style="width: 100%; height: 400px;"></div>
+                      </div>
+                      <hr class="grey-line">
+
+                      <div class="container bg-white">
+                        <h4 class="pt-3">Hazard Level</h4>
+                        <div id="hazardsChart" style="width: 100%; height: 400px;"></div>
+                      </div>
+                      <hr class="grey-line">
+
+                      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                      <script>
+                        google.charts.load('current', { packages: ['corechart', 'bar', 'line'] });
+                        google.charts.setOnLoadCallback(drawCharts);
+
+                        function drawCharts() {
+                          var userData = google.visualization.arrayToDataTable([
+                            ['Day', 'Posts'],
+                            <% chartData.forEach(function(item) { %>
+                              ['<%= item.day %>', <%= item.total %>],
+                            <% }); %>
+                          ]);
+                          var userOptions = {
+                            title: 'Posts Per Day of the Week',
+                            hAxis: { title: 'Day of the Week' },
+                            vAxis: { title: 'Number of Posts' },
+                            legend: 'none',
+                            colors: ['#007bff']
+                          };
+                          var userChart = new google.visualization.ColumnChart(document.getElementById('userChart'));
+                          userChart.draw(userData, userOptions);
+
+                          var riskLevelData = google.visualization.arrayToDataTable([
+                            ['Risk Level', 'Total'],
+                            <% riskLevelData.forEach(function(item) { %>
+                              ['<%= item.risk_level %>', <%= item.total %>],
+                            <% }); %>
+                          ]);
+                          var riskLevelOptions = { title: 'Risk Level Distribution', pieHole: 0.4 };
+                          var riskLevelChart = new google.visualization.PieChart(document.getElementById('riskLevelChart'));
+                          riskLevelChart.draw(riskLevelData, riskLevelOptions);
+
+                          var checklistData = google.visualization.arrayToDataTable([
+                            ['Checklist', 'Completed'],
+                            ['Near River', <%= checklistData.near_river %>],
+                            ['Near Fault', <%= checklistData.near_fault %>],
+                            ['Has Emergency Kit', <%= checklistData.has_emergency_kit %>],
+                            ['Has Evacuation Plan', <%= checklistData.has_evacuation_plan %>]
+                          ]);
+                          var checklistOptions = { title: 'Checklist Completion' };
+                          var checklistChart = new google.visualization.BarChart(document.getElementById('checklistChart'));
+                          checklistChart.draw(checklistData, checklistOptions);
+
+                          var trendData = google.visualization.arrayToDataTable([
+                            ['Date', 'Avg Risk Score'],
+                            <% trendData.forEach(function(item) { %>
+                              ['<%= item.date %>', <%= item.avg_score %>],
+                            <% }); %>
+                          ]);
+                          var trendOptions = { title: 'Risk Score Trend Over Time' };
+                          var trendChart = new google.visualization.LineChart(document.getElementById('trendChart'));
+                          trendChart.draw(trendData, trendOptions);
+
+                          var hazardsData = google.visualization.arrayToDataTable([
+                            ['Hazard', 'Users'],
+                            ['Near River', <%= hazardsData.near_river %>],
+                            ['Near Fault', <%= hazardsData.near_fault %>]
+                          ]);
+                          var hazardsOptions = { title: 'Users Near Hazards' };
+                          var hazardsChart = new google.visualization.BarChart(document.getElementById('hazardsChart'));
+                          hazardsChart.draw(hazardsData, hazardsOptions);
+                        }
+                      </script>
+                    </div>
+                </div>
+            </div>
+            <!-- Blank End -->
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</body>
+
+</html>

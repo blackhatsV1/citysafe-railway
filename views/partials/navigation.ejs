@@ -1,0 +1,31 @@
+
+<div class="side-nav">
+    <ul>
+        <li><a href="/weather">Weather</a></li>
+        <li><a href="/send-sos">Send SOS</a></li>
+        <li><a href="/nearby-stations">Nearby Stations</a></li>
+        <li><a href="/survival-tips">Survival Tips</a></li>
+        <li><a href="/">News Feed</a></li>
+        <li><a href="/requesthelp">Post Help</a></li>
+        <li><a href="/assess-risk">Risks Assessment Tool</a></li>
+        <li><a href="/risk-results">Risks Assessment Results</a></li>
+        <li><a href="/aboutuser">About</a></li>
+    </ul>
+</div>
+
+
+
+<div class="top-nav bg-light">
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <div class="nav-title">Welcome, <%= username %>!</div>
+    <ul class="top-links">
+        <li><a href="/logout" class="btn btn-danger text-light">Logout</a></li>
+        <li><a href="/help-user" class="btn btn-success text-light">Help</a></li>
+    </ul>
+</div>
+
+<div class="overlay" onclick="toggleSidebar()"></div>
+
+
+
+

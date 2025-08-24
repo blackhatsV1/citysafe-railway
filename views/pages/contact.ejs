@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/visitor-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/visitor-navbar'); %>
+          <!-- Navbar End -->
+
+
+          <!-- Send Message Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded mb-3 p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h1><i class="bi bi-cloud-sun mb-0"></i>Welcome to CitySafe!</h1>
+                    </div>
+                </div>
+                <div class="row g-4">                    
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Send Us a Message</h6>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" placeholder="your.email@example.com">
+                                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputName" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="exampleInputName" placeholder="Complete Name">
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <textarea class="form-control" placeholder="Leave a comment here"
+                                        id="floatingTextarea" style="height: 150px;"></textarea>
+                                    <label for="floatingTextarea">Comments</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Team Contacts</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent"><strong>Jayrold Tabalina:</strong> jayroldtabalina@gmail.com</li>
+                                <li class="list-group-item bg-transparent"><strong>Yasmine Talaman:</strong> yama.talaman.ui@phinmaed.com</li>
+                                <li class="list-group-item bg-transparent"><strong>Mark Vincent Jabao:</strong> mark.jabao@gmail.com</li>    
+                            </ul>
+
+                            <h6 class="mb-4 mt-4">Philippine Emergency Hotlines</h6>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-transparent"><strong>National Emergency Hotline:</strong> 911</li>
+                                <li class="list-group-item bg-transparent"><strong>PNP (Police):</strong> 117 or (02) 8722-0650</li>
+                                <li class="list-group-item bg-transparent"><strong>BFP (Fire):</strong> (02) 8426-0219</li>
+                                <li class="list-group-item bg-transparent"><strong>Red Cross:</strong> 143 or (02) 8790-2300</li>
+                                <li class="list-group-item bg-transparent"><strong>MMDA:</strong> 136</li>
+                                <li class="list-group-item bg-transparent"><strong>NDRRMC Operations Center:</strong> (02) 8911-5061 to 65</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Send Message End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+

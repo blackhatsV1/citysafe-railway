@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Map Start -->
+          <div class="container-fluid pt-4 px-4">
+            <div class="row g-4">
+              <div class="col-sm-12 col-xl-6">
+                <div class="bg-secondary text-center rounded p-4">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Viewing Live Location</h6>
+                  </div>
+                  <div>
+                        <%- include('../partials/selectloc'); %>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 col-xl-6">
+                <div class="h-100 bg-secondary rounded p-4">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                    <h6 class="mb-0">Request Help</h6>
+                  </div>
+                  <form action="/postrequest" method="POST">
+                        <label class="form-label mb-1">Your Name:</label>
+                        <input class="form-control mb-3" type="text" name="name" placeholder="Your Name" value="<%= username %>" required>
+                
+                        <label class="form-label mb-1">Your Location:</label>
+                        <textarea class="form-control mb-3" id="location" name="location" placeholder="Your Location" required></textarea>
+                
+                        <label class="form-label mb-1">Your Needs:</label>
+                        <textarea class="form-control mb-3" name="needs" placeholder="Describe your need" required></textarea>
+                
+                        <button class="btn btn-primary mb-0" type="submit">Post Request</button>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Map End -->
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

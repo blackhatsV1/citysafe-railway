@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+
+          <!-- Recent Post Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary text-center rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Recent Posts</h6>
+                        <a href="/requesthelp">Create new Request</a>
+                    </div>
+                    <div id="alerts"></div>
+                
+                    <div class="container w-60 mt-1">
+                      <% for (let i = 0; i < users.length; i++) { %>
+                        <div class="mb-3">
+                          <div class="container text-white rounded p-3 ">
+                            <p><strong class="fs-5"><%= users[i].name %></strong> - posted a request.</p>
+
+                              <div class="p-4 mb-1 bg-light text-dark rounded border">
+                                <p><%= users[i].created_at %></p>    
+                                <p><strong>Location:</strong> <%= users[i].location %></p>
+                                <p><strong>Request:</strong> <%= users[i].needs %></p> 
+                              </div>
+
+                              <form action="/sendhelp" method="POST">
+                                <input type="hidden" name="id" value="<%= users[i].id %>">
+                                <input type="hidden" name="name" value="<%= users[i].name %>">
+                                <input type="hidden" name="location" value="<%= users[i].location %>">
+                                <input type="hidden" name="needs" value="<%= users[i].needs %>">
+                                
+                                <span class="d-flex">
+                                  <% if (users[i].name === username) { %> 
+                                    <button type="button" class="btn btn-secondary w-auto mb-4 mt-0 me-1" style="opacity: 1;" disabled>You posted this on <%= users[i].created_at %></button> 
+                                  <% } else { %>  
+                                    <button type="submit" class="btn btn-primary mb-4 mt-0 w-auto me-1">Send Help</button>
+                                  <% } %>
+                                  <button class="btn btn-warning w-auto mb-4 mt-0 ms-auto" style="opacity: 1;" disabled>Number of People who helped: <%= users[i].help_count %></button>
+                                </span>
+                              </form>
+                          </div>
+
+                          <hr class="grey-line mb-0">
+                        </div>
+                      <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Sales End -->
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+
+<!-- <h1><i class="bi bi-cloud-sun"></i>CitySafe Weather View</h1>
+<hr class="grey-line">
+<h4 class="mb-5">Please <a href="/login">Login</a> to experience full feature!</h4>
+<p id="address"></p>
+<p id="coords"></p>
+<div class="rounded p-3" id="weather-info">Loading weather data...</div>
+<div id="weather-map"></div>
+<p><%- include('../partials/selectloc-visitor'); %></p> -->

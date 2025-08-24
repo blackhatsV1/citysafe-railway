@@ -1,0 +1,409 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.144), rgba(0, 0, 0, 0.301)), 
+              url("../images/urban1.jpg") no-repeat center center fixed;
+  background-size: cover;
+}
+
+#weather-map {
+  width: 100%;
+  height: 90vh;
+}
+
+#weather-info {
+  width: 100%;
+  height: auto;
+  background: #121212; 
+  color: #00FF00; 
+  padding: 10px; 
+  font-family: Arial, sans-serif; 
+  margin-top: 10px;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 60px; 
+  color: rgb(0, 0, 0);
+  background-color: rgba(255, 255, 255, 0.658);
+  z-index: 1020;
+  border-radius: 4px;
+}
+
+
+.my-container {
+  height: 100%;
+  max-width: 80%;
+  margin: 80px auto;
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+}
+.admin-container {
+  max-width: 80%;
+  height: 100%;
+  margin: 80px auto;
+  margin-top: auto;
+  padding: 20px;
+  color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.658);
+}
+
+.table-container {
+  margin-left: auto;
+  background: white;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  height: 800px;
+}
+
+.content {
+  margin-left: 200px; 
+  padding-top: 120px; 
+}
+
+.my-table {
+  margin: auto;
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 800px; 
+}
+
+.my-table th,
+.my-table td {
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+
+#submit {
+  background: rgb(35, 35, 245);
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+#delete{
+  background: none;
+  border: 1px solid #fd0000;
+  color: #fd0000;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+
+.my-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.my-form label {
+  font-weight: normal;
+  margin-bottom: 2px;
+  margin-top: 10px;
+}
+
+.my-form input, select, textarea, button{
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+
+
+.grey-line {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+
+
+/* Side Navigation */
+.side-nav {
+  font-size: larger;
+  margin-top: 50px;
+  padding-right: 10px;
+  position: fixed;
+  top: 100px;                
+  left: 0px;
+  width: 200px;
+  height: 100%;
+  background: none;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1030;
+}
+
+.side-nav ul {
+  list-style: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav ul li {
+  padding: 10px;
+  background-color: white;
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  border-radius: 5px;
+  margin: 5px 0;
+  transition: background-color 0.3s, color 0.3s; 
+}
+
+.side-nav ul li:hover {
+  background-color: #409cff; 
+  color: #fff;
+}
+
+.side-nav ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  display: block;
+}
+
+/* Top Navigation */
+ .top-nav {
+  position: fixed;
+  width: 100%;               
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  padding: 0 20px;
+  height: auto;
+  z-index: 1040;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.nav-title {
+  padding: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(0, 0, 0);
+} 
+.top-nav ul {
+  list-style: none;
+  display: flex;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.top-nav ul li {
+  margin-left: 20px;
+}
+
+.top-nav ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  border-radius: 4px; 
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Button top nav */
+
+.top-nav ul li a:hover {
+  background-color: #007bff; 
+  color: #fff; 
+}
+
+
+.top-nav ul li a.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.top-nav ul li a.btn-success {
+  background-color: #28a745;
+  color: #fff;
+  border-radius: 4px;
+}
+
+.top-nav ul li a.btn-danger:hover {
+  background-color: #c82333;
+}
+
+.top-nav ul li a.btn-success:hover {
+  background-color: #218838;
+} 
+
+
+
+/* LOGIN */
+
+.login-container {
+  margin: 10% auto;
+  padding: 40px;
+  max-width: 400px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.651);
+}
+
+.login-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-input-firstname,
+.login-input-lastname,
+.login-input-contact,
+.login-input-password {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 1.1em;
+  background-color: rgb(250, 250, 250);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 4px;
+}
+
+#login-btn {
+  padding: 8px;
+  color: white;
+  background-color: #061ad1;
+  border-radius: 4px;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.charts-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; 
+  justify-content: space-between;
+}
+
+.chart {
+  flex: 1 1 48%; 
+  max-width: 48%; 
+  margin-bottom: 20px; 
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1040;
+}
+
+.top-bar {
+  display: flex;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.top-links {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  margin-top:10px;
+  padding: 5px 0;
+  border-top: 1px solid #ddd;
+}
+
+.top-links li {
+  margin: 10px 10px;
+}
+
+.top-links li a {
+  color: rgb(0,0,0);
+  text-decoration: none;
+  padding: 6px 10px;
+}
+
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .top-nav {
+    height: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  .content {
+    margin-top: 30px;
+    margin-left: 0;
+    padding-top: 140px;    
+  }
+
+  .top-bar {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+
+  .top-links {
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .side-nav {
+    top: 100px;           
+    left: -220px;            
+    height: auto;
+    transition: left 0.3s ease;
+    z-index: 1050;
+  }
+
+  .side-nav.active {
+    left: 0;
+  }
+
+  .overlay.active {
+    display: block;
+  }
+
+ 
+
+  .my-container, .admin-container, .table-container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .my-form {
+    grid-template-columns: 1fr;
+  }
+
+  .chart {
+    flex: 1 1 100%; 
+    max-width: 100%;
+  }
+
+  .my-table {
+    min-width: unset; 
+  }
+}
+

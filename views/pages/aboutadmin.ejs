@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/admin-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/admin-navbar'); %>
+          <!-- Navbar End -->
+
+
+          <!-- Typography Start -->
+            <div class="container-fluid pt-4 px-4">
+                
+                <div class="row g-4">                    
+                    <div class="col-sm-8">
+                        <div class="bg-secondary rounded h-100 p-4 p-3 mb-3">
+                          <h1>About CitySafe</h1>
+                           <div class="p-4 pb-0 mb-4">
+                            <figure class="text-center">
+                              <blockquote class="blockquote">
+                                <p>CitySafe is a web-based disaster response app that provides 
+                                real-time alerts, localized notifications, and reliable information 
+                                during emergencies. It helps citizens stay informed, allows donors 
+                                to send aid directly to victims, and supports city officials and 
+                                responders in coordinating relief efforts efficiently.</p>
+
+                                <p>
+                                  CitySafe was developed as a <em>capstone research project</em> entitled 
+                                  “CitySafe: Urban Disaster Response App”, with the goal of creating a 
+                                  user-friendly, efficient, and compassionate system that strengthens 
+                                  disaster resilience in urban areas.
+                                </p>
+                              </blockquote>
+                              <figcaption class="blockquote-footer">
+                                Capstone Research Project <cite title="Source Title">“CitySafe: Urban Disaster Response App”</cite>
+                              </figcaption>
+                            </figure>
+                          </div>
+
+                        </div>
+                    </div>
+              
+                    <div class="col-sm-4">
+                        <div class="p-4 mb-3 bg-secondary rounded h-100 p-4">
+                            <h3 class="mb-3 mt-3">Team Members:</h3>
+                            <div class="border rounded p-4 pb-0 mb-4">
+                                <figure>
+                                    <blockquote class="blockquote">
+                                        <p>Jayrold Tabalina</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="border rounded p-4 pb-0 mb-4">
+                                <figure class="text-center">
+                                    <blockquote class="blockquote">
+                                        <p>Yasmine M. Talaman</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <div class="border rounded p-4 pb-0 mb-0">
+                                <figure class="text-end">
+                                    <blockquote class="blockquote">
+                                        <p>Mark Vincent Jabao</p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer">
+                                        4th year student at <cite title="Source Title">PHINMA-University of Iloilo</cite>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Typography End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+

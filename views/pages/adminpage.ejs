@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/admin-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/admin-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Weather Info -->
+          <div class="container-fluid pt-4 px-4">
+            <div class="bg-secondary text-center rounded p-4">
+              <p>Full-size version on the <a href="/reports">Charts Tab</a>.</p>
+              <p>CitySafe Total Users: <strong class="text-primary"><%= totalUsers %></strong></p>
+              <p>There are currently <strong><a href="/view-users-posts"><%= totalRequests %></strong> posts</a> requesting for help.</p>
+            </div>
+          </div>
+          <!-- Weather Info End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <h6 class="mb-0">High Risk Users</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                              <table class="table table-hover text-danger">
+                                  <thead>
+                                      <tr>
+                                          
+                                          <th scope="col">Fullname</th>
+                                          <th scope="col">Risk Score</th>
+                                          <th scope="col">Date Assessed</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% riskTables['High'].forEach(user => { %>
+                                      <tr>
+                                        <td><%= user.username %></td>
+                                        <td><%= user.risk_score %></td>
+                                        <td><%= user.assessed_at.toLocaleString() %></td>
+                                      </tr>
+                                      <% }) %>
+                                  </tbody>
+                              </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Moderate Risk Users</h6>
+                                <a href="">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                              <table class="table table-hover text-warning">
+                                  <thead>
+                                      <tr>
+                                          
+                                          <th scope="col">Fullname</th>
+                                          <th scope="col">Risk Score</th>
+                                          <th scope="col">Date Assessed</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% riskTables['Moderate'].forEach(user => { %>
+                                      <tr>
+                                        <td><%= user.username %></td>
+                                        <td><%= user.risk_score %></td>
+                                        <td><%= user.assessed_at.toLocaleString() %></td>
+                                      </tr>
+                                      <% }) %>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="h-100 bg-secondary rounded p-4">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <h6 class="mb-0">Low Risk Users</h6>
+                                <a href="/reports">Show All</a>
+                            </div>
+                            <div class="table-responsive">
+                              <table class="table table-hover text-success">
+                                  <thead>
+                                      <tr>
+                                          
+                                          <th scope="col">Fullname</th>
+                                          <th scope="col">Risk Score</th>
+                                          <th scope="col">Date Assessed</th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <% riskTables['Low'].forEach(user => { %>
+                                      <tr>
+                                        <td><%= user.username %></td>
+                                        <td><%= user.risk_score %></td>
+                                        <td><%= user.assessed_at.toLocaleString() %></td>
+                                      </tr>
+                                      <% }) %>
+                                  </tbody>
+                              </table>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+            </div>
+          <!-- Widgets End -->
+
+          <!-- Chart Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Number of posts per day by users.</h6>
+                            <canvas id="userChart" ></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Risk Level chart</h6>
+                            <canvas id="riskLevelChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Checklist Chart</h6>
+                            <canvas id="checklistChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Trend Chart</h6>
+                            <canvas id="trendChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-xl-6">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h6 class="mb-4">Hazard Chart</h6>
+                            <canvas id="hazardsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <!-- Chart End -->         
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  
+  <script src="/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script>
+(function ($) {
+    "use strict";
+
+    // Chart Global Color
+    Chart.defaults.color = "#6C7293";
+    Chart.defaults.borderColor = "#000000";
+
+    // --- User Chart ---
+    var ctx1 = $("#userChart").get(0).getContext("2d");
+    var userChart = new Chart(ctx1, {
+        type: "bar",
+        data: {
+            labels: [ <% chartData.forEach(function(item, index) { %> '<%= item.day %>'<% if (index < chartData.length-1) { %>, <% } %> <% }); %> ],
+            datasets: [{
+                label: "Posts",
+                data: [ <% chartData.forEach(function(item, index) { %> <%= item.total %><% if (index < chartData.length-1) { %>, <% } %> <% }); %> ],
+                backgroundColor: "rgba(235, 22, 22, .7)"
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    // --- Risk Level Chart ---
+    var ctx2 = $("#riskLevelChart").get(0).getContext("2d");
+    var riskChart = new Chart(ctx2, {
+        type: "doughnut",
+        data: {
+            labels: [ <% riskLevelData.forEach(function(item, index) { %> '<%= item.risk_level %>'<% if (index < riskLevelData.length-1) { %>, <% } %> <% }); %> ],
+            datasets: [{
+                data: [ <% riskLevelData.forEach(function(item, index) { %> <%= item.total %><% if (index < riskLevelData.length-1) { %>, <% } %> <% }); %> ],
+                backgroundColor: [
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .6)",
+                    "rgba(235, 22, 22, .5)",
+                    "rgba(235, 22, 22, .4)"
+                ]
+            }]
+        },
+        options: { responsive: true }
+    });
+
+    // --- Checklist Chart ---
+    var ctx3 = $("#checklistChart").get(0).getContext("2d");
+    var checklistChart = new Chart(ctx3, {
+        type: "bar",
+        data: {
+            labels: ["Near River", "Near Fault", "Has Emergency Kit", "Has Evacuation Plan"],
+            datasets: [{
+                label: "Completed",
+                data: [<%= checklistData.near_river %>, <%= checklistData.near_fault %>, <%= checklistData.has_emergency_kit %>, <%= checklistData.has_evacuation_plan %>],
+                backgroundColor: "rgba(235, 22, 22, .7)"
+            }]
+        },
+        options: { responsive: true }
+    });
+
+   // --- Trend Chart ---
+var ctx4 = $("#trendChart").get(0).getContext("2d");
+var trendChart = new Chart(ctx4, {
+    type: "line",
+    data: {
+        labels: [ <% trendData.forEach(function(item, index) { %> '<%= item.date %>'<% if (index < trendData.length-1) { %>, <% } %> <% }); %> ],
+        datasets: [{
+            label: "Avg Risk Score",
+            data: [ <% trendData.forEach(function(item, index) { %> <%= item.avg_score %><% if (index < trendData.length-1) { %>, <% } %> <% }); %> ],
+            borderColor: "rgba(235, 22, 22, .7)",
+            backgroundColor: "rgba(235, 22, 22, .3)",
+            tension: 0.4,
+            fill: true,
+            pointBackgroundColor: "rgba(235, 22, 22, .9)",
+            pointRadius: 4
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { display: true },
+            tooltip: {
+                enabled: true, // tooltips will still show
+                callbacks: {
+                    title: function(context) {
+                        // show the date label in tooltip
+                        return context[0].label;
+                    }
+                }
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    display: false // hides labels under the chart
+                },
+                grid: {
+                    drawTicks: false // prevents small tick marks
+                }
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+
+
+    // --- Hazards Chart ---
+    var ctx5 = $("#hazardsChart").get(0).getContext("2d");
+    var hazardsChart = new Chart(ctx5, {
+        type: "bar",
+        data: {
+            labels: ["Near River", "Near Fault"],
+            datasets: [{
+                label: "Users",
+                data: [<%= hazardsData.near_river %>, <%= hazardsData.near_fault %>],
+                backgroundColor: [
+                    "rgba(235, 22, 22, .7)",
+                    "rgba(235, 22, 22, .5)"
+                ]
+            }]
+        },
+        options: { responsive: true }
+    });
+
+})(jQuery);
+</script>
+
+
+</body>
+
+</html>

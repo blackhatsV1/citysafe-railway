@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+              
+                <div class="container bg-secondary rounded p-3 mb-4">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h4 class="mb-0">Risk Assessment Tool</h4>
+                        <a href="/risk-results">See Assessment History</a>
+                    </div>
+
+                  <hr>
+
+                  <form action="/assess-risk" method="POST">
+                    <div class="bg-secondary rounded h-100 p-4">
+                      <h6 class="mb-4">Risk Assessment</h6>
+
+                      <!-- Question 1 -->
+                      <div class="mb-3">
+                        <label class="d-block mb-2">Are you near a river?</label>
+                        <div class="d-flex gap-2">
+                          <input type="radio" class="btn-check" name="nearRiver" id="riverYes" value="true" required>
+                          <label class="btn btn-outline-primary" for="riverYes">Yes</label>
+
+                          <input type="radio" class="btn-check" name="nearRiver" id="riverNo" value="false">
+                          <label class="btn btn-outline-primary" for="riverNo">No</label>
+                        </div>
+                      </div>
+
+                      <!-- Question 2 -->
+                      <div class="mb-3">
+                        <label class="d-block mb-2">Are you near a fault line?</label>
+                        <div class="d-flex gap-2">
+                          <input type="radio" class="btn-check" name="nearFault" id="faultYes" value="true" required>
+                          <label class="btn btn-outline-primary" for="faultYes">Yes</label>
+
+                          <input type="radio" class="btn-check" name="nearFault" id="faultNo" value="false">
+                          <label class="btn btn-outline-primary" for="faultNo">No</label>
+                        </div>
+                      </div>
+
+                      <!-- Question 3 -->
+                      <div class="mb-3">
+                        <label class="d-block mb-2">Do you have an emergency kit?</label>
+                        <div class="d-flex gap-2">
+                          <input type="radio" class="btn-check" name="hasKit" id="kitYes" value="true" required>
+                          <label class="btn btn-outline-primary" for="kitYes">Yes</label>
+
+                          <input type="radio" class="btn-check" name="hasKit" id="kitNo" value="false">
+                          <label class="btn btn-outline-primary" for="kitNo">No</label>
+                        </div>
+                      </div>
+
+                      <!-- Question 4 -->
+                      <div class="mb-3">
+                        <label class="d-block mb-2">Do you have an evacuation plan?</label>
+                        <div class="d-flex gap-2">
+                          <input type="radio" class="btn-check" name="hasPlan" id="planYes" value="true" required>
+                          <label class="btn btn-outline-primary" for="planYes">Yes</label>
+
+                          <input type="radio" class="btn-check" name="hasPlan" id="planNo" value="false">
+                          <label class="btn btn-outline-primary" for="planNo">No</label>
+                        </div>
+                      </div>
+
+                      <!-- Buttons -->
+                       <hr class="mb-3">
+                      <div class="d-flex justify-content-between mt-3">
+                        <button type="submit" class="btn btn-success ">Submit</button>
+                      </div>
+                    </div>
+                  </form>
+
+
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

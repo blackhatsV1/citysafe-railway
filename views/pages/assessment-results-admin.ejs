@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/admin-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/admin-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="container bg-secondary rounded p-3 mb-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h4 class="text-white mb-0 mt-3">Assessment Records</h4>
+                    </div>
+                  
+                  
+                  <hr class="grey-line">
+                  <% if (assessments.length > 0) { %>
+                    <div class="my-container w-60 mt-1 fs-5">
+                    <% for (let i = 0; i < assessments.length; i++) { %>
+                        <div class="mb-3">
+                        <p class="text-white mt-5 mb-1">Name: <%= assessments[i].firstname %> <%= assessments[i].lastname %></p>
+                        <div class="bg-light border rounded p-3 text-dark" style="border: 1px solid black;">
+                            <p><%= assessments[i].assessed_at %></p>
+                            <p><strong>Risk Score:</strong> <%= assessments[i].risk_score %></p>
+                            <p><strong>Risk Level:</strong> <%= assessments[i].risk_level %></p>
+                        </div>
+                        <form action="/delete-result/<%= assessments[i].id %>" method="POST">
+                            <button type="submit" onclick="return confirm('Delete this Assessment?')" class="btn btn-danger mt-2 w-auto" >Delete</button>
+                          </form>
+                        <hr class="grey-line">
+                        </div>
+                    <% } %>
+                    </div>
+                <% } else { %>
+                    <div class="my-container w-60 mt-5">
+                    <p>No risk assessment results found.</p>
+                    </div>
+                <% } %>
+
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+
+

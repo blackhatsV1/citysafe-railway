@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="container-fluid bg-secondary rounded p-3 mb-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h3 class="text-white mb-0 mt-3">Disaster Survival Tips!</h3>
+                    </div>
+                    <p>Here are some essential survival tips to help you stay safe during different types of disasters.</p>
+                  <hr>
+                  <div class="row">
+                <!-- Survival Tips Content -->
+                <div class="col-md-8">
+                    <h6 class="mt-4">Fire Survival Tips</h6>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item bg-transparent">Stay low to the ground to avoid smoke inhalation.</li>
+                        <li class="list-group-item bg-transparent">If trapped inside, close all doors and use a cloth to block smoke from entering.</li>
+                        <li class="list-group-item bg-transparent">Don't use elevators during a fire.</li>
+                        <li class="list-group-item bg-transparent">If possible, use a fire extinguisher for small fires, but don’t risk your safety.</li>
+                        <li class="list-group-item bg-transparent">Always have an emergency exit plan and stay calm.</li>
+                    </ul>
+
+                    <h6 class="mt-4">Flood Survival Tips</h6>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item bg-transparent">Move to higher ground immediately.</li>
+                        <li class="list-group-item bg-transparent">If trapped, climb to a rooftop or stay in a safe location until help arrives.</li>
+                        <li class="list-group-item bg-transparent">Do not walk or drive through floodwaters as they can be dangerous.</li>
+                        <li class="list-group-item bg-transparent">Listen to weather alerts and evacuation orders.</li>
+                        <li class="list-group-item bg-transparent">Keep emergency supplies such as water, food, and first aid kits on hand.</li>
+                    </ul>
+
+                    <h6 class="mt-4">Earthquake Survival Tips</h6>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item bg-transparent">If inside, take cover under a table or desk. Protect your head and neck.</li>
+                        <li class="list-group-item bg-transparent">If outside, move to an open area away from buildings, trees, and power lines.</li>
+                        <li class="list-group-item bg-transparent">Stay away from windows and anything that could fall during aftershocks.</li>
+                        <li class="list-group-item bg-transparent">Check for hazards such as gas leaks or fires after the shaking stops.</li>
+                    </ul>
+
+                    <h6 class="mt-4">Landslide Survival Tips</h6>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item bg-transparent">If you are near a hill or mountain, move to an open space immediately.</li>
+                        <li class="list-group-item bg-transparent">If trapped, create a barrier to protect yourself from debris.</li>
+                        <li class="list-group-item bg-transparent">Listen for warnings and evacuate immediately if instructed.</li>
+                        <li class="list-group-item bg-transparent">Stay away from riverbeds and low-lying areas that might be affected.</li>
+                    </ul>
+
+                    <hr class="my-4">
+                </div>
+
+                <!-- Hotlines Sidebar -->
+                <div class="col-md-4">
+                    <h6 class="mt-4">Emergency Hotlines</h6>
+                    <p>If you need immediate assistance, please refer to the following emergency contact numbers:</p>
+                    <ul class="list-group mt-3">
+                        <li class="list-group-item bg-transparent"><strong>National Emergency Hotline:</strong> 911</li>
+                        <li class="list-group-item bg-transparent"><strong>PNP (Police):</strong> 117 or (02) 8722-0650</li>
+                        <li class="list-group-item bg-transparent"><strong>BFP (Fire):</strong> (02) 8426-0219</li>
+                        <li class="list-group-item bg-transparent"><strong>Red Cross:</strong> 143 or (02) 8790-2300</li>
+                        <li class="list-group-item bg-transparent"><strong>MMDA:</strong> 136</li>
+                        <li class="list-group-item bg-transparent"><strong>NDRRMC Operations Center:</strong> (02) 8911-5061 to 65</li>
+                    </ul>
+                </div>
+            </div>
+
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+</body>
+
+</html>
+
+

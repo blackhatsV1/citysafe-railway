@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<!-- ========================================================================= -->
+
+<body>
+  <div class="container-fluid position-relative d-flex p-0">
+    <!-- Spinner Start -->
+    <%- include('../partials/spinner'); %>
+    <!-- Spinner End -->
+
+
+    <!-- Sidebar Start -->
+    <%- include('../partials/user-sidebar'); %>
+      <!-- Sidebar End -->
+
+
+      <!-- Content Start -->
+      <div class="content">
+        <!-- Navbar Start -->
+        <%- include('../partials/user-navbar'); %>
+          <!-- Navbar End -->
+
+          <!-- Widgets Start -->
+            <div class="container-fluid pt-4 px-4">
+              
+                <div class="container bg-secondary rounded p-3 mb-4">
+                  <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h4 class="mb-0">Edit Profile</h4>
+                  </div>
+
+                  <hr>
+
+                  <div class="container bg-secondary w-75 mt-3 p-3">
+                    <form action="/update-account" method="POST">
+                        <div class="row mb-3">
+                            <label for="firstname" class="col-sm-2 col-form-label">Firstname</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" name="firstname" value="<%= user.firstname %>" required  id="firstname">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="lastname" class="col-sm-2 col-form-label">Lastname</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lastname" name="lastname" value="<%= user.lastname %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="street_address" class="col-sm-2 col-form-label">Street Address</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="street_address" name="street_address" value="<%= user.street_address %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="barangay" class="col-sm-2 col-form-label">Barangay</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="barangay" name="barangay" value="<%= user.barangay %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="city" class="col-sm-2 col-form-label">City</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="city" name="city" value="<%= user.city %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="province" class="col-sm-2 col-form-label">Province</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="province" name="province" value="<%= user.province %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="postal_code" class="col-sm-2 col-form-label">Postal Code</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="postal_code" name="postal_code" value="<%= user.postal_code %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="country" class="col-sm-2 col-form-label">Country</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="country" name="country" value="<%= user.country %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="email" class="col-sm-2 col-form-label">Email</label>
+                            <div class="col-sm-10">
+                                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="contact_number" class="col-sm-2 col-form-label">Contact Number</label>
+                            <div class="col-sm-10">
+                                <input type="number" class="form-control" id="contact_number" name="contact_number" value="<%= user.contact_number %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="landmark" class="col-sm-2 col-form-label">Landmark</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="landmark" name="landmark" value="<%= user.landmark %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="address_type" class="col-sm-2 col-form-label">Address Type</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="address_type" name="address_type" value="<%= user.address_type %>" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="additional_instructions" class="col-sm-2 col-form-label">Additional Instructions</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="additional_instructions" name="additional_instructions" value="<%= user.additional_instructions %>" required>                                
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password" name="password" value="<%= user.password %>" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                  <i class="bi bi-eye-slash text-primary"> Show Password</i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex align-items-center justify-content-between mb-0 mt-3">
+                          <button type="submit" class="btn btn-success mt-2">Update</button>
+                          <a class="btn btn-outline-primary m-2" href="/weather">Cancel</a>       
+                        </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+          <!-- Footer Start -->
+          <%- include('../partials/footer'); %>
+            <!-- Footer End -->
+
+      </div>
+      <!-- Content End -->
+
+
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+  </div>
+
+  <script src="/js/script.js"></script>
+  <script>
+  const togglePassword = document.querySelector("#togglePassword");
+  const passwordInput = document.querySelector("#password");
+  const icon = togglePassword.querySelector("i");
+
+  togglePassword.addEventListener("click", function () {
+    const isPassword = passwordInput.getAttribute("type") === "password";
+    passwordInput.setAttribute("type", isPassword ? "text" : "password");
+    icon.classList.toggle("bi-eye");
+    icon.classList.toggle("bi-eye-slash");
+  });
+</script>
+</body>
+
+</html>

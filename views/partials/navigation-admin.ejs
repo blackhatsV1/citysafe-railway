@@ -1,0 +1,29 @@
+
+<div class="side-nav">
+    
+    <ul>
+        <li><a href="/adminpage">Home Dashboard</a></li>
+        <li><a href="/disaster-reports">SOS Reports</a></li>
+        <li><a href="/view-users-posts">View Users Posts</a></li>
+        <li><a href="/reports">Reports</a></li>
+        <li><a href="/userslist">Users List</a></li>
+        <li><a href="/assessment-results">View Assessment Results</a></li>
+        <li><a href="/addusers">Add Users</a></li>
+        <li><a href="/aboutadmin">About</a></li>
+    </ul>
+</div>
+
+
+ 
+<div class="top-nav bg-light">
+    <div class="hamburger" onclick="toggleSidebar()">&#9776;</div>
+    <div class="nav-title">Admin Dashboard</div>
+    <ul class="top-links">
+        <div class="nav-title">Welcome, Admin <%= username %></div>
+        <li><a href="/logout" class="btn btn-danger text-light">Logout</a></li>
+    </ul>
+</div>
+
+
+<div class="overlay" onclick="toggleSidebar()"></div>
+
