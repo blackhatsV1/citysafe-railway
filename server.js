@@ -47,6 +47,7 @@ app.get("/api/weather", async (req, res) => {
 });
 
 
+
 //weather
 app.get('/weather', (req, res) => {
   if (req.session.loggedin && req.session.role === 'user') {
