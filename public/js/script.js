@@ -1,4 +1,11 @@
 //=============permission==========
+document.getElementById("enableNotifications").addEventListener("click", () => {
+  if ("Notification" in window && Notification.permission === "default") {
+    Notification.requestPermission().then(permission => {
+      console.log("Notification permission:", permission);
+    });
+  }
+});
 if ("Notification" in window && Notification.permission === "default") {
   Notification.requestPermission().then(permission => {
     console.log("Notification permission:", permission);

@@ -52,7 +52,7 @@ app.get('/weather', (req, res) => {
   if (req.session.loggedin && req.session.role === 'user') {
     db.query('SELECT * FROM requests ORDER BY created_at DESC', (err, results) => {
       if (err) throw err;
-      res.render('pages/weather', { users: results, username: req.session.username});
+      res.render('pages/weather', { users: results, username: req.session.username, apiKey: process.env.OWM_API_KEY });
     });    
   } else {
     res.redirect('/visitor');
