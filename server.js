@@ -274,7 +274,7 @@ app.get('/help-user', (req, res) => {
   if (req.session.loggedin && req.session.role === 'user') {
     db.query('SELECT * FROM users', (err, results) => {
       if (err) throw err;
-      res.render('pages/weather', { users: results, username: req.session.username });
+      res.render('pages/help-user', { users: results, username: req.session.username });
     });
   } else {
     res.redirect('/login');
