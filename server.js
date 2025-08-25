@@ -1,3 +1,4 @@
+const axios = require("axios");
 
 const express = require('express');
 const app = express();
@@ -27,12 +28,31 @@ app.use(express.static('public'));
 app.set('views', './views'); 
 
 
+app.get("/api/weather", async (req, res) => {
+  const { lat, lon } = req.query;
+  try {
+    const response = await axios.get("https://api.openweathermap.org/data/2.5/weather", {
+      params: {
+        lat,
+        lon,
+        units: "metric",
+        appid: process.env.OWM_API_KEY,
+      },
+    });
+    res.json(response.data);
+  } catch (err) {
+    console.error("Weather API error:", err.message);
+    res.status(500).json({ error: "Failed to fetch weather" });
+  }
+});
+
+
 //weather
 app.get('/weather', (req, res) => {
   if (req.session.loggedin && req.session.role === 'user') {
     db.query('SELECT * FROM requests ORDER BY created_at DESC', (err, results) => {
       if (err) throw err;
-      res.render('pages/weather', { users: results, username: req.session.username, apiKey: process.env.OWM_API_KEY });
+      res.render('pages/weather', { users: results, username: req.session.username});
     });    
   } else {
     res.redirect('/visitor');

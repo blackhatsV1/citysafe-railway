@@ -20,7 +20,7 @@ function showMap(position) {
 
   //==============openweather data======
   function fetchCurrentWeather(lat, lon) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`)
+    fetch(`/api/weather?lat=${lat}&lon=${lon}`)
       .then(res => res.json())
       .then(data => {
         interpretWeather(data);
