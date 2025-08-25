@@ -256,7 +256,7 @@ function interpretWeather(data) {
     hazardText += "Extreme cold. ";
   }
 
-  // Always notify every update
+
   if (hazard) {
     showWeatherNotification("Weather Alert!", hazardText, true);
   } else {
@@ -269,6 +269,3 @@ function interpretWeather(data) {
 function handleError(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
-
-
-
